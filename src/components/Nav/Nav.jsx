@@ -17,7 +17,9 @@ const Nav = () => {
             <Link className="text-decoration-none mx-3">FAQ</Link>
             <Link className="text-decoration-none ">Blog</Link>
             <Link className="text-decoration-none mx-3">ToggleTheme</Link>
-            <Link className="text-decoration-none ">Login</Link>
+            <Link className="text-decoration-none " to="/login">
+              Login
+            </Link>
           </div>
         </div>
       </nav>
