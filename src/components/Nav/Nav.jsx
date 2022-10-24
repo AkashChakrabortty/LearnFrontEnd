@@ -15,7 +15,9 @@ const Nav = () => {
           <div className="right-nav fs-5 d-flex align-items-center">
             <Link className="text-decoration-none ">Courses</Link>
             <Link className="text-decoration-none mx-3">FAQ</Link>
-            <Link className="text-decoration-none ">Blog</Link>
+            <Link className="text-decoration-none " to="/blog">
+              Blog
+            </Link>
             <Link className="text-decoration-none mx-3">ToggleTheme</Link>
             <Link className="text-decoration-none " to="/login">
               Login

@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Blog from "../Blog/Blog";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Route from "../Route/Route";
@@ -16,6 +17,10 @@ const MainContent = () => {
         {
           path: "/register",
           element: <Register></Register>,
+        },
+        {
+          path: "/blog",
+          element: <Blog></Blog>,
         },
       ],
     },
