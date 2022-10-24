@@ -19,6 +19,13 @@ const Blog = () => {
         Other options for implement authentication: Keycloak,Okta,Auth0,Amazon
         Cognito.
       </p>
+      <hr />
+      <h2>4.3 How does the private route work?</h2>
+      <p>
+        The react private route component renders child components ( children )
+        if the user is logged in. If not logged in the user is redirected to the
+        /login page with the return url passed in the location state property.
+      </p>
     </div>
   );
 };
