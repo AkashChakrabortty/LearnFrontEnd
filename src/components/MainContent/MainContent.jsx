@@ -1,6 +1,8 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Blog from "../Blog/Blog";
+import Course from "../Course/Course";
+import CourseDetails from "../CourseDetails/CourseDetails";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Route from "../Route/Route";
@@ -21,6 +23,20 @@ const MainContent = () => {
         {
           path: "/blog",
           element: <Blog></Blog>,
+        },
+        {
+          path: "/course",
+          loader: async () => {
+            return fetch(`https://course-five.vercel.app/`);
+          },
+          element: <Course></Course>,
+        },
+        {
+          path: "/course/:id",
+          loader: async ({ params }) => {
+            return fetch(`https://course-five.vercel.app/course/${params.id}`);
+          },
+          element: <CourseDetails></CourseDetails>,
         },
       ],
     },
