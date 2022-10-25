@@ -3,7 +3,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Blog from "../Blog/Blog";
 import Course from "../Course/Course";
 import CourseDetails from "../CourseDetails/CourseDetails";
+import Faq from "../Faq/Faq";
+import Home from "../Home/Home";
 import Login from "../Login/Login";
+import NotFound from "../NotFound/NotFound";
 import Register from "../Register/Register";
 import Route from "../Route/Route";
 const MainContent = () => {
@@ -12,6 +15,10 @@ const MainContent = () => {
       path: "/",
       element: <Route></Route>,
       children: [
+        {
+          path: "/",
+          element: <Home></Home>,
+        },
         {
           path: "/login",
           element: <Login></Login>,
@@ -37,6 +44,14 @@ const MainContent = () => {
             return fetch(`https://course-five.vercel.app/course/${params.id}`);
           },
           element: <CourseDetails></CourseDetails>,
+        },
+        {
+          path: "*",
+          element: <NotFound></NotFound>,
+        },
+        {
+          path: "/faq",
+          element: <Faq></Faq>,
         },
       ],
     },
