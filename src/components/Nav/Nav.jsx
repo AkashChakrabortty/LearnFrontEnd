@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./style.css";
 const Nav = () => {
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
   return (
     <div>
       <nav>
@@ -24,7 +35,13 @@ const Nav = () => {
             <Link className="text-decoration-none " to="/blog">
               Blog
             </Link>
-            <Link className="text-decoration-none mx-3">ToggleTheme</Link>
+            <button
+              onClick={toggleTheme}
+              className="mx-3 text-primary border-primary"
+            >
+              Toggle Theme
+            </button>
+            {/* <Link className="text-decoration-none mx-3">ToggleTheme</Link> */}
             <Link className="text-decoration-none " to="/login">
               Login
             </Link>
