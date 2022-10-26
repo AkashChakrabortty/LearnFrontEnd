@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { userInfo } from "../../Context/AuthProvider";
 
 const Register = () => {
   const { createUserE_P } = useContext(userInfo);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
     createUserE_P(email, password);
+    navigate("/");
   };
   return (
     <div>

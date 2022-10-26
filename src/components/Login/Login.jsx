@@ -1,25 +1,30 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userInfo } from "../../Context/AuthProvider";
 const Login = () => {
   const { logIn_E_P, googleSignIn, githubSignIn } = useContext(userInfo);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
     logIn_E_P(email, password);
+    navigate("/");
   };
 
   const handleGoogle = (event) => {
     event.preventDefault();
     googleSignIn();
+    navigate("/");
   };
 
   const handleGithub = (event) => {
     event.preventDefault();
     githubSignIn();
+    navigate("/");
   };
+
   return (
     <div>
       <div className="card col-6 mx-auto">

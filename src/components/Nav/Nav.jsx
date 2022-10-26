@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { userInfo } from "../../Context/AuthProvider";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./style.css";
 const Nav = () => {
-  const [theme, setTheme] = useState("light");
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+  const { user, logOut } = useContext(userInfo);
+  const handleLogOut = () => {
+    logOut();
   };
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
   return (
     <div>
       <nav>
@@ -29,7 +24,7 @@ const Nav = () => {
               LearnFrontEnd
             </Link>
           </div>
-          <div className="right-nav fs-lg-3 d-flex align-items-center col-8 justify-content-end">
+          <div className="right-nav fs-lg-3 d-flex align-items-center col-8 justify-content-center mx-2">
             <Link to="/course" className="text-decoration-none ">
               Courses
             </Link>
@@ -39,15 +34,21 @@ const Nav = () => {
             <Link className="text-decoration-none " to="/blog">
               Blog
             </Link>
-            <button
-              onClick={toggleTheme}
-              className="mx-lg-3 mx-1 text-primary border-primary"
-            >
-              Toggle Theme
-            </button>
-            <Link className="text-decoration-none " to="/login">
-              Login
-            </Link>
+
+            <span>
+              <React.Fragment>
+                <ToggleSwitch label="Dark" />
+              </React.Fragment>
+            </span>
+            {user ? (
+              <Link className="text-decoration-none" onClick={handleLogOut}>
+                Logout
+              </Link>
+            ) : (
+              <Link className="text-decoration-none" to="/login">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </nav>

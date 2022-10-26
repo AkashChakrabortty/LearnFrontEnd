@@ -13,7 +13,7 @@ const Card = (props) => {
             style={{ height: 150, width: 150 }}
           />
         </div>
-        <div className="card-body">
+        <div className="card-body text-primary">
           <h5 className="card-title">{Name}</h5>
           <span>price:{price}</span>
           <p className="card-text">{description}</p>
