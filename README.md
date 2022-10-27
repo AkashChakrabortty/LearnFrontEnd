@@ -1,11 +1,13 @@
 # website name: LearnFrontEnd
 
-# login
+# live site:
 
-# Register
+- login
 
-# Private Route
+- Register
 
-# Github login
+- Private Route
 
-# google login
+- Github login
+
+- google login
