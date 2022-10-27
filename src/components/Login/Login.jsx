@@ -1,28 +1,46 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { userInfo } from "../../Context/AuthProvider";
 const Login = () => {
   const { logIn_E_P, googleSignIn, githubSignIn } = useContext(userInfo);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    logIn_E_P(email, password);
-    navigate("/");
+    logIn_E_P(email, password)
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        alert("wrong password");
+      });
   };
 
   const handleGoogle = (event) => {
     event.preventDefault();
-    googleSignIn();
-    navigate("/");
+    googleSignIn()
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        // alert("wrong password");
+      });
   };
 
   const handleGithub = (event) => {
     event.preventDefault();
-    githubSignIn();
-    navigate("/");
+    githubSignIn()
+      .then(() => {
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        // alert("wrong password");
+      });
   };
 
   return (

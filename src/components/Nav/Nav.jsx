@@ -5,9 +5,12 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./style.css";
 const Nav = () => {
   const { user, logOut } = useContext(userInfo);
+  const photoURL = user?.photoURL;
+  const displayName = user?.displayName;
   const handleLogOut = () => {
     logOut();
   };
+
   return (
     <div>
       <nav>
@@ -41,9 +44,17 @@ const Nav = () => {
               </React.Fragment>
             </span>
             {user ? (
-              <Link className="text-decoration-none" onClick={handleLogOut}>
-                Logout
-              </Link>
+              <>
+                <img
+                  src={photoURL}
+                  title={displayName}
+                  alt={displayName}
+                  style={{ height: 25, width: 25, borderRadius: "50%" }}
+                ></img>
+                <Link className="text-decoration-none" onClick={handleLogOut}>
+                  Logout
+                </Link>
+              </>
             ) : (
               <Link className="text-decoration-none" to="/login">
                 Login

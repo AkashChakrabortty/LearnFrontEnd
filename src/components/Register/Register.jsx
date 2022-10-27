@@ -1,18 +1,33 @@
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { userInfo } from "../../Context/AuthProvider";
+import app from "../../firebase/firebase.config";
 
 const Register = () => {
-  const { createUserE_P } = useContext(userInfo);
+  const auth = getAuth(app);
+  const { updateUser } = useContext(userInfo);
   const navigate = useNavigate();
+  const location = useLocation();
 
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserE_P(email, password);
-    navigate("/");
+    const name = event.target.name.value;
+    const url = event.target.photoUrl.value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        updateUser(name, url);
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        alert("wrong");
+      });
   };
+
   return (
     <div>
       <div className="card col-6 mx-auto">
